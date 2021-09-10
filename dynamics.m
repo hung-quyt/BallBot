@@ -1,0 +1,37 @@
+syms t psix(t) psiy(t) psiz(t) thetax(t) thetay(t) psix_dot(t) psiy_dot(t) psiz_dot(t) thetax_dot(t) thetay_dot(t) thetax_2dot(t) thetay_2dot(t) psix_2dot(t) psiy_2dot(t) psiz_2dot(t)
+%x1 = 0;
+%x2 = Is*thetax_dot(t) + (Mw*(2*Rs^2*thetax_dot(t) + 2*Rs*psix_dot(t)*cos(psix(t))*(Rs + Rw)))/2 + (Mb*(2*thetax_dot(t)*Rs^2 + 2*l*psix_dot(t)*cos(psix(t))*Rs))/2 + Ms*Rs^2*thetax_dot(t) - (Iw*Rs^2*(2*psix_dot(t) - 2*thetax_dot(t)))/(2*Rw^2);
+%x3 = Mb*g*l*sin(psix(t)) + Mw*g*sin(psix(t))*(Rs + Rw) - Mb*Rs*l*psix_dot(t)*thetax_dot(t)*sin(psix(t)) - Mw*Rs*psix_dot(t)*thetax_dot(t)*sin(psix(t))*(Rs + Rw);
+%x4 = (Mw*(2*psix_dot(t)*(Rs + Rw)^2 + 2*Rs*thetax_dot(t)*cos(psix(t))*(Rs + Rw)))/2 + 2*psix_dot(t)*((Mb*l^2)/2 + Ib/2) + (Iw*Rs^2*(2*psix_dot(t) - 2*thetax_dot(t)))/(2*Rw^2) + Mb*Rs*l*thetax_dot(t)*cos(psix(t));
+%T_thetax = (Rs/Rw)*((2^(1/2)*T1)/2 - (2^(1/2)*T2)/4 - (2^(1/2)*T3)/4);
+%T_psix = (-Rs/Rw)*((2^(1/2)*T1)/2 - (2^(1/2)*T2)/4 - (2^(1/2)*T3)/4);
+%z1=diff(x2,t);
+%z2=diff(x4,t);
+%z1 =(Mb*(2*Rs^2*thetax_2dot(t) + 2*Rs*l*cos(psix(t))*psix_2dot(t) - 2*Rs*l*sin(psix(t))*psix_dot(t)*psix_dot(t)))/2 + (Mw*(2*Rs^2*thetax_2dot(t) + 2*Rs*cos(psix(t))*(Rs + Rw)*psix_2dot(t) - 2*Rs*sin(psix(t))*psix_dot(t)*(Rs + Rw)*psix_dot(t)))/2 + Is*thetax_2dot(t) + Ms*Rs^2*thetax_2dot(t) - (Iw*Rs^2*(2*psix_2dot(t) - 2*thetax_2dot(t)))/(2*Rw^2);
+%z2 = 2*((Mb*l^2)/2 + Ib/2)*psix_2dot(t) + (Mw*(2*(Rs + Rw)^2*psix_2dot(t) + 2*Rs*cos(psix(t))*(Rs + Rw)*thetax_2dot(t) - 2*Rs*sin(psix(t))*thetax_dot(t)*(Rs + Rw)*psix_dot(t)))/2 + (Iw*Rs^2*(2*psix_2dot(t) - 2*thetax_2dot(t)))/(2*Rw^2) + Mb*Rs*l*cos(psix(t))*thetax_2dot(t) - Mb*Rs*l*sin(psix(t))*thetax_dot(t)*psix_dot(t);
+%h1 = z1-x1-T_thetax;
+%h2 = z2-x3-T_psix;
+%h1 = (Mb*(2*Rs^2*thetax_2dot(t) + 2*Rs*l*cos(psix(t))*psix_2dot(t) - 2*Rs*l*sin(psix(t))*psix_dot(t)^2))/2 + (Mw*(2*Rs^2*thetax_2dot(t) - 2*Rs*sin(psix(t))*psix_dot(t)^2*(Rs + Rw) + 2*Rs*cos(psix(t))*psix_2dot(t)*(Rs + Rw)))/2 + Is*thetax_2dot(t) + Ms*Rs^2*thetax_2dot(t) + (Rs*((2^(1/2)*T2)/4 - (2^(1/2)*T1)/2 + (2^(1/2)*T3)/4))/Rw - (Iw*Rs^2*(2*psix_2dot(t) - 2*thetax_2dot(t)))/(2*Rw^2);
+%h2 = psix_2dot(t)*(Mb*l^2 + Ib) + (Mw*(2*psix_2dot(t)*(Rs + Rw)^2 + 2*Rs*cos(psix(t))*thetax_2dot(t)*(Rs + Rw) - 2*Rs*sin(psix(t))*psix_dot(t)*thetax_dot(t)*(Rs + Rw)))/2 - (Rs*((2^(1/2)*T2)/4 - (2^(1/2)*T1)/2 + (2^(1/2)*T3)/4))/Rw - Mw*g*sin(psix(t))*(Rs + Rw) - Mb*g*l*sin(psix(t)) + (Iw*Rs^2*(2*psix_2dot(t) - 2*thetax_2dot(t)))/(2*Rw^2) + Mb*Rs*l*cos(psix(t))*thetax_2dot(t) + Mw*Rs*sin(psix(t))*psix_dot(t)*thetax_dot(t)*(Rs + Rw);
+x5 = 0;
+x6 = Is*thetay_dot(t) + (Mw*(2*Rs^2*thetay_dot(t) + 2*Rs*psiy_dot(t)*cos(psiy(t))*(Rs + Rw)))/2 + (Mb*(2*thetay_dot(t)*Rs^2 + 2*l*psiy_dot(t)*cos(psiy(t))*Rs))/2 + Ms*Rs^2*thetay_dot(t) - (Iw*Rs^2*(2*psiy_dot(t) - 2*thetay_dot(t)))/(2*Rw^2);
+x7 = Mb*g*l*sin(psiy(t)) + Mw*g*sin(psiy(t))*(Rs + Rw) - Mb*Rs*l*psiy_dot(t)*thetay_dot(t)*sin(psiy(t)) - Mw*Rs*psiy_dot(t)*thetay_dot(t)*sin(psiy(t))*(Rs + Rw);
+x8 = (Mw*(2*psiy_dot(t)*(Rs + Rw)^2 + 2*Rs*thetay_dot(t)*cos(psiy(t))*(Rs + Rw)))/2 + 2*psiy_dot(t)*((Mb*l^2)/2 + Ib/2) + (Iw*Rs^2*(2*psiy_dot(t) - 2*thetay_dot(t)))/(2*Rw^2) + Mb*Rs*l*thetay_dot(t)*cos(psiy(t));
+T_thetay = (Rs/Rw)*((2^(1/2)*3^(1/2)*T2)/4 - (2^(1/2)*3^(1/2)*T3)/4);
+T_psiy = (-Rs/Rw)*((2^(1/2)*3^(1/2)*T2)/4 - (2^(1/2)*3^(1/2)*T3)/4);
+%z3=diff(x6,t);
+%z4=diff(x8,t);
+z3 = (Mb*(2*Rs^2*thetay_2dot(t) + 2*Rs*l*cos(psiy(t))*psiy_2dot(t) - 2*Rs*l*sin(psiy(t))*psiy_dot(t)^2))/2 + (Mw*(2*Rs^2*thetay_2dot(t) - 2*Rs*sin(psiy(t))*psiy_dot(t)^2*(Rs + Rw) + 2*Rs*cos(psiy(t))*psiy_2dot(t)*(Rs + Rw)))/2 + Is*thetay_2dot(t) + Ms*Rs^2*thetay_2dot(t) - (Iw*Rs^2*(2*psiy_2dot(t) - 2*thetay_2dot(t)))/(2*Rw^2);
+z4 = psiy_2dot(t)*(Mb*l^2 + Ib) + (Mw*(2*psiy_2dot(t)*(Rs + Rw)^2 + 2*Rs*cos(psiy(t))*thetay_2dot(t)*(Rs + Rw) - 2*Rs*sin(psiy(t))*psiy_dot(t)*thetay_dot(t)*(Rs + Rw)))/2 + (Iw*Rs^2*(2*psiy_2dot(t) - 2*thetay_2dot(t)))/(2*Rw^2) + Mb*Rs*l*cos(psiy(t))*thetay_2dot(t) - Mb*Rs*l*sin(psiy(t))*psiy_dot(t)*thetay_dot(t);
+%h3 = z3-x5-T_thetay;
+%h4 = z4-x7-T_psiy;
+h3 = (Mb*(2*Rs^2*thetay_2dot(t) + 2*Rs*l*cos(psiy(t))*psiy_2dot(t) - 2*Rs*l*sin(psiy(t))*psiy_dot(t)^2))/2 + (Mw*(2*Rs^2*thetay_2dot(t) - 2*Rs*sin(psiy(t))*psiy_dot(t)^2*(Rs + Rw) + 2*Rs*cos(psiy(t))*psiy_2dot(t)*(Rs + Rw)))/2 + Is*thetay_2dot(t) + Ms*Rs^2*thetay_2dot(t) - (Rs*((6^(1/2)*T2)/4 - (6^(1/2)*T3)/4))/Rw - (Iw*Rs^2*(2*psiy_2dot(t) - 2*thetay_2dot(t)))/(2*Rw^2);
+h4 = psiy_2dot(t)*(Mb*l^2 + Ib) + (Mw*(2*psiy_2dot(t)*(Rs + Rw)^2 + 2*Rs*cos(psiy(t))*thetay_2dot(t)*(Rs + Rw) - 2*Rs*sin(psiy(t))*psiy_dot(t)*thetay_dot(t)*(Rs + Rw)))/2 + (Rs*((6^(1/2)*T2)/4 - (6^(1/2)*T3)/4))/Rw - Mw*g*sin(psiy(t))*(Rs + Rw) - Mb*g*l*sin(psiy(t)) + (Iw*Rs^2*(2*psiy_2dot(t) - 2*thetay_2dot(t)))/(2*Rw^2) + Mb*Rs*l*cos(psiy(t))*thetay_2dot(t) + Mw*Rs*sin(psiy(t))*psiy_dot(t)*thetay_dot(t)*(Rs + Rw);
+x9 = 0;
+x10 = Ib_xy*psiz_dot(t) + 2*psiz_dot(t)*((Mw*(Rs + Rw)^2)/2 + (Iw_xy*Rs^2)/(2*Rw^2));T_thetay = (Rs/Rw)*(-(2^(1/2)*3^(1/2)*T3)/4);
+T_psiz = (-Rs/Rw)*((2^(1/2)*T1)/2 + (2^(1/2)*T2)/2 + (2^(1/2)*T3)/2);
+%z5=diff(x10,t);
+z5 = Ib_xy*psiz_2dot(t) + psiz_2dot(t)*(Mw*(Rs + Rw)^2 + (Iw_xy*Rs^2)/Rw^2);
+%h5 = z5-x9-T_psiz;
+h5 = Ib_xy*psiz_2dot(t) + psiz_2dot(t)*(Mw*(Rs + Rw)^2 + (Iw_xy*Rs^2)/Rw^2) + (Rs*((2^(1/2)*T1)/2 + (2^(1/2)*T2)/2 + (2^(1/2)*T3)/2))/Rw;
+
